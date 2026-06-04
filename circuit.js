@@ -309,7 +309,7 @@ function drawCircuit(closed, I, E) {
       ctx.fillStyle = wireColor; ctx.beginPath(); ctx.arc(jx, top, 5, 0, Math.PI*2); ctx.fill();
     });
 
-    drawBattery(batX-10, batY, E);
+    drawBattery(left, batY, E);
     drawSwitch(swX, swY, closed);
     drawAmmeter(amX, amY, I.toFixed(2));
   }
