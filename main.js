@@ -23,10 +23,16 @@ function showPage(id) {
   
   // Định nghĩa nhãn hiển thị tương ứng với ID trang
   const labels = {
-    home: 'Trang chủ', motion: 'Chuyển động thẳng', force: 'Lực – Kéo co',
+    home: 'Trang chủ', motion: 'Chuyển động thẳng', force: 'Lực',
     wave: 'Sóng cơ học', optics: 'Sóng ánh sáng', circuit: 'Mạch điện',
-    acidbase: 'Acid – Base', cell: 'Tế bào', dna: 'Lắp ráp DNA',
-    periodic: 'Bảng tuần hoàn'
+    acidbase: 'Phản ứng hóa học', periodic: 'Bảng tuần hoàn',
+    reactionrate: 'Tốc độ phản ứng', electrolysis: 'Điện phân',
+    dna: 'Lắp ráp DNA', cell: 'Tế bào', photosynthesis: 'Quang hợp',
+    enzyme: 'Enzyme', mitosis: 'Nguyên phân',
+    young: 'Giao thoa Young', energy: 'Động năng – Thế năng', torque: 'Moment lực',
+    projectile: 'Chuyển động ném', mendel: 'Lai giống Mendel',
+    watercycle: 'Vòng tuần hoàn nước', earthorbit: 'Trái Đất quanh Mặt Trời',
+    tectonic: 'Mảng kiến tạo', atmosphere: 'Khí áp & Gió'
   };
   
   const statusPage = document.getElementById('status-page');
@@ -43,9 +49,19 @@ function showPage(id) {
   if (id === 'acidbase') { initShelf(); }
   if (id === 'dna') { initDNA(); }
   if (id === 'cell') { drawPlantCell(); setupCellEvents(); }
+  if (id === 'reactionrate') { if (typeof initReactionRate === 'function') initReactionRate(); }
+  if (id === 'electrolysis') { if (typeof initElectrolysis === 'function') initElectrolysis(); }
+  if (id === 'photosynthesis') { if (typeof initPhotosynthesis === 'function') initPhotosynthesis(); }
+  if (id === 'enzyme') { if (typeof initEnzyme === 'function') initEnzyme(); }
+  if (id === 'mitosis') { if (typeof resetMitosisAnimation === 'function') resetMitosisAnimation(); }
   if (id === 'young') { runYoung(); syncYoungSliders(); }
   if (id === 'energy') { resetEnergy(); if(!energyRunning) toggleEnergySim(); }
   if (id === 'torque') { updateTorque(); }
+  if (id === 'projectile') { if (typeof initProjectile === 'function') initProjectile(); }
+  if (id === 'mendel') { if (typeof initMendel === 'function') initMendel(); }
+  if (id === 'watercycle') { if (typeof initWaterCycle === 'function') initWaterCycle(); }
+  if (id === 'earthorbit') { if (typeof initEarthOrbit === 'function') initEarthOrbit(); }
+  if (id === 'tectonic') { if (typeof initTectonic === 'function') initTectonic(); }
   if (id === 'periodic') {
 	if (!window.periodicRendered) {
 		renderPeriodicTable();
