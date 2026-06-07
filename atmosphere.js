@@ -239,22 +239,24 @@ function drawArrow(ctx, x, y, dir, color, size) {
 
 function drawPressureBands(ctx, W, H) {
   const bands = [
-    {lat:0.0, label:'HIGH – Cực cao áp', color:'#1565c0'},
-    {lat:0.17, label:'LOW – Ôn đới thấp áp', color:'#c62828'},
-    {lat:0.33, label:'HIGH – Chí tuyến cao áp', color:'#1565c0'},
-    {lat:0.5,  label:'LOW – Xích đạo thấp áp (ITCZ)', color:'#c62828'},
-    {lat:0.67, label:'HIGH – Chí tuyến cao áp', color:'#1565c0'},
-    {lat:0.83, label:'LOW – Ôn đới thấp áp', color:'#c62828'},
-    {lat:1.0,  label:'HIGH – Cực cao áp', color:'#1565c0'},
+    {lat:0.0, label:'HIGH – Cực cao áp', color:'#64b5f6'},
+    {lat:0.17, label:'LOW – Ôn đới thấp áp', color:'#ff8a65'},
+    {lat:0.33, label:'HIGH – Chí tuyến cao áp', color:'#64b5f6'},
+    {lat:0.5,  label:'LOW – Xích đạo thấp áp (ITCZ)', color:'#ff8a65'},
+    {lat:0.67, label:'HIGH – Chí tuyến cao áp', color:'#64b5f6'},
+    {lat:0.83, label:'LOW – Ôn đới thấp áp', color:'#ff8a65'},
+    {lat:1.0,  label:'HIGH – Cực cao áp', color:'#64b5f6'},
   ];
 
   bands.forEach(b => {
     const y = H*(1-b.lat);
     ctx.save();
-    ctx.strokeStyle = b.color; ctx.lineWidth=2.5;
+    ctx.strokeStyle = b.color; ctx.lineWidth=3;
+    ctx.shadowBlur = 8; ctx.shadowColor = b.color;
     ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
-    ctx.fillStyle = b.color; ctx.font='bold 10px monospace'; ctx.textAlign='center';
-    ctx.fillText(b.label, W*0.5, y > H*0.1 ? y-6 : y+14);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = b.color; ctx.font='bold 11px monospace'; ctx.textAlign='center';
+    ctx.fillText(b.label, W*0.5, y > H*0.1 ? y-7 : y+15);
     ctx.restore();
   });
 }

@@ -63,7 +63,6 @@
         <div class="nav-item" onclick="showPage('periodic')">📊 Bảng tuần hoàn</div>
         <div class="nav-item" onclick="showPage('reactionrate')">⚡ Tốc độ phản ứng</div>
         <div class="nav-item" onclick="showPage('electrolysis')">🔌 Điện phân</div>
-        <div class="nav-item" onclick="showPage('redox')">⚛ Oxi hóa – Khử</div>
         <div class="nav-item" onclick="showPage('crystal')">💎 Kết tinh</div>
       </div>
     </div>
@@ -159,11 +158,6 @@
           <div class="card-icon">🔌</div>
           <h3>Điện phân</h3>
           <p>Tính khối lượng bám catot theo định luật Faraday</p>
-        </div>
-        <div class="card chem-card" onclick="showPage('redox')">
-          <div class="card-icon">⚛</div>
-          <h3>Oxi hóa – Khử</h3>
-          <p>Electron chuyển dời, chất khử, chất oxi hóa</p>
         </div>
         <div class="card chem-card" onclick="showPage('crystal')">
           <div class="card-icon">💎</div>
@@ -1216,52 +1210,6 @@
     </div>
 
     <!-- ==================== HÓA HỌC: OXI HÓA – KHỬ ==================== -->
-    <div class="page" id="page-redox">
-      <div class="page-header chem-header">
-        <span class="page-badge chem-badge">⚗ Hóa Học</span>
-        <h2>Phản Ứng Oxi Hóa – Khử</h2>
-      </div>
-      <div class="sim-container">
-        <div class="sim-toolbar">
-          <span class="sim-title">// ELECTRON CHUYỂN DỜI – OXI HÓA – KHỬ</span>
-          <button class="btn btn-chem" id="redox-btn" onclick="runRedox()">⚗ PHẢN ỨNG</button>
-          <button class="btn btn-secondary" onclick="resetRedox()">↺ LÀM MỚI</button>
-        </div>
-        <div style="padding:10px 16px;background:#eef2fa;border-bottom:2px solid var(--border);">
-          <div style="font-size:11px;font-weight:800;color:#1565c0;letter-spacing:1px;margin-bottom:8px;">CHỌN PHẢN ỨNG OXI HÓA – KHỬ:</div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;" id="redox-picker"></div>
-        </div>
-        <div class="sim-canvas" style="padding:0;min-height:280px;background:#0d1b2a">
-          <canvas id="redox-canvas" width="700" height="280" style="display:block;max-width:100%;width:100%"></canvas>
-        </div>
-      </div>
-      <div class="data-panel">
-        <div class="data-cell"><div class="dc-label">Chất khử</div><div class="dc-val" id="redox-reductant" style="font-size:13px">–</div></div>
-        <div class="data-cell"><div class="dc-label">Chất oxi hóa</div><div class="dc-val" id="redox-oxidant" style="font-size:13px">–</div></div>
-        <div class="data-cell"><div class="dc-label">e⁻ chuyển</div><div class="dc-val" id="redox-electrons">–</div></div>
-        <div class="data-cell"><div class="dc-label">ΔG°</div><div class="dc-val" id="redox-dg" style="font-size:12px">–</div></div>
-      </div>
-      <div id="redox-equation" style="display:none;padding:14px 18px;background:#eef6ff;border-top:2px solid var(--border);">
-        <h4 style="margin:0 0 6px;font-size:13px;color:#1565c0;">⚗ Phương trình ion rút gọn:</h4>
-        <div id="redox-eq-text" style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#0d47a1;"></div>
-        <div id="redox-eq-note" style="font-size:12px;color:#666;margin-top:4px;"></div>
-      </div>
-      <div class="info-grid">
-        <div class="info-block"><h4>Khái niệm cơ bản</h4><ul>
-          <li>Oxi hóa: chất <b>nhường</b> electron (tăng số oxi hóa)</li>
-          <li>Khử: chất <b>nhận</b> electron (giảm số oxi hóa)</li>
-          <li>Chất khử bị oxi hóa; chất oxi hóa bị khử</li>
-          <li>Tổng e⁻ nhường = tổng e⁻ nhận (bảo toàn electron)</li>
-        </ul></div>
-        <div class="info-block"><h4>Ứng dụng thực tế</h4><ul>
-          <li>Pin điện hóa: phản ứng oxi hóa – khử tạo ra điện</li>
-          <li>Ăn mòn kim loại: Fe bị oxi hóa bởi O₂ và H₂O</li>
-          <li>Quang hợp: CO₂ bị khử → glucose</li>
-          <li>Hô hấp tế bào: glucose bị oxi hóa → CO₂ + H₂O + năng lượng</li>
-        </ul></div>
-      </div>
-    </div>
-
     <!-- ==================== HÓA HỌC: KẾT TINH ==================== -->
     <div class="page" id="page-crystal">
       <div class="page-header chem-header">
@@ -1726,7 +1674,7 @@
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;padding:12px 16px;background:#e8f4fd;border-bottom:2px solid #b3d4f0;align-items:center;">
       <span style="font-size:11px;font-weight:800;color:#0984e3;letter-spacing:1px;">NĂM:</span>
-      <input type="number" id="earth-year" min="1900" max="2100" step="1" style="width:110px" oninput="setEarthYear(parseInt(this.value,10))">
+      <input type="number" id="earth-year" min="1900" max="2100" step="1" style="width:110px" onchange="setEarthYear(parseInt(this.value,10))" onkeydown="if(event.key==='Enter')setEarthYear(parseInt(this.value,10))">
       <span style="font-family:'Space Mono',monospace;font-weight:800;color:#0d2b4e;min-width:160px" id="earth-year-info">—</span>
       <span style="font-size:11px;font-weight:800;color:#0984e3;letter-spacing:1px;margin-left:auto;">NGÀY:</span>
       <input type="range" id="earth-day" min="1" max="365" value="80" style="flex:1;min-width:180px;" oninput="setEarthDay(parseInt(this.value,10))">
@@ -2014,7 +1962,6 @@
 <script src="chemistry.js"></script>
 <script src="reactionrate.js"></script>
 <script src="electrolysis.js"></script>
-<script src="redox.js"></script>
 <script src="crystal.js"></script>
 <script src="young.js"></script>
 <script src="energy.js"></script>

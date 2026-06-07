@@ -61,7 +61,7 @@ function getEventDays(y) {
 
 function updateEarthControls() {
   const yIn = document.getElementById('earth-year');
-  if (yIn && parseInt(yIn.value, 10) !== earthYear) yIn.value = String(earthYear);
+  if (yIn && document.activeElement !== yIn && parseInt(yIn.value, 10) !== earthYear) yIn.value = String(earthYear);
 
   const info = document.getElementById('earth-year-info');
   if (info) {
